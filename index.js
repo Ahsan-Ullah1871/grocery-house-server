@@ -1,7 +1,8 @@
 const express = require("express");
-var cors = require("cors");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
+require("dotenv").config();
 
 const app = express();
 app.use(cors());
@@ -24,6 +25,14 @@ client.connect((err) => {
 		.collection("products");
 	// perform actions on the collection object
 	console.log("Database Connected");
+
+	app.post("/addNewProduct", (req, res) => {
+		console.log(req.body);
+		GroceryCollection.insertOne(req.body).then((result) => {
+			console.log(result);
+		});
+	});
+
 	// client.close();
 });
 
