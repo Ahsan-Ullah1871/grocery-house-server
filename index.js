@@ -33,6 +33,21 @@ client.connect((err) => {
 		});
 	});
 
+	app.get("/allProducts", (req, res) => {
+		GroceryCollection.find({}).toArray((arr, documents) => {
+			res.send(documents);
+		});
+	});
+
+	app.get("/selectedProduct/:name", (req, res) => {
+		console.log(req.params.name);
+		GroceryCollection.find({ productName: req.params.name }).toArray(
+			(arr, documents) => {
+				res.send(documents[0]);
+			}
+		);
+	});
+
 	// client.close();
 });
 
