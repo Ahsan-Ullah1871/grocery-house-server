@@ -33,7 +33,6 @@ client.connect((err) => {
 
 	// Post New Product:
 	app.post("/addNewProduct", (req, res) => {
-		console.log(req.body);
 		GroceryCollection.insertOne(req.body).then((result) => {
 			res.send(result.insertedCount > 0);
 		});
@@ -41,7 +40,6 @@ client.connect((err) => {
 
 	//Post Full Order Details:
 	app.post("/fullOrderDetails", (req, res) => {
-		console.log(req.body);
 		orderDetailsCollection.insertOne(req.body).then((result) => {
 			console.log(result);
 		});
@@ -56,7 +54,6 @@ client.connect((err) => {
 
 	// Get selected Product:
 	app.get("/selectedProduct/:name", (req, res) => {
-		console.log(req.params.name);
 		GroceryCollection.find({ productName: req.params.name }).toArray(
 			(arr, documents) => {
 				res.send(documents[0]);
@@ -66,7 +63,6 @@ client.connect((err) => {
 
 	// Get Logged In user Order Products:
 	app.get("/my-orders", (req, res) => {
-		console.log(req.query.email);
 		orderDetailsCollection
 			.find({ buyerEmail: req.query.email })
 			.toArray((arr, documents) => {
@@ -86,7 +82,6 @@ client.connect((err) => {
 	// Delete a product:
 	app.delete("/deleteProduct/:id", (req, res) => {
 		const id = ObjectId(req.params.id);
-		console.log(id);
 		GroceryCollection.deleteOne({
 			_id: ObjectId(`${req.params.id}`),
 		}).then((result) => {
