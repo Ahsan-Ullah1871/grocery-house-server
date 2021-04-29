@@ -10,8 +10,6 @@ Packages: <br/>
 1.Used Node.JS,Express,cors,body-parser dotenv for
 Backend, and MongoDB as database. <br/>
 
-Some features of my project: <br />
-
 ## How To Use
 
 If you want download this project you can download zip file or clone this site.
