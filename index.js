@@ -72,6 +72,7 @@ client.connect((err) => {
 
 	// Get Selected Order:
 	app.get("/my-orders/:selectedOrder", (req, res) => {
+		console.log(req.params.selectedOrder);
 		orderDetailsCollection
 			.find({ _id: ObjectId(`${req.params.selectedOrder}`) })
 			.toArray((arr, documents) => {
